@@ -1,17 +1,27 @@
-# Welcome to MkDocs
+Welcome to this wiki! :wave: We will be going through how to start your journey with PhysiCell.
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+PhysiCell is an **open-source, agent-based modelling framework for 3-D multicellular simulations**. It is written in C++ and it comes with multiple code examples that will help you understand how to build your own model. There are some very good [official tutorials](http://physicell.org/tutorials/), that are definitely worth checking out, as well as two user guides (found inside the PhysiCell repository - we will talk about them later). 
 
-## Commands
+However, these resources can be a bit overwhelming, and it may be difficult to understand where to start. Therefore, **the goal of this wiki is to help you make the most of the official resources**, by guiding you through them, while also providing some **additional information** that I wish I had had when I started using this piece of software. However, it **does not replace PhysiCell's original documentation**!
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+Here is a list of the topics we will focus on. Preferably, you should go through them in **sequential order**, but it is not essential. If you have a specific question, just go through the page that covers the topic you need to clarify. You can also find these links listed on the left side of the wiki.
 
-## Project layout
+!!! info
+    Before starting, check out the brief [programming review](programming-review.md) to brush up on some concepts that will be useful when running simulations.
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+## :tada: PhysiCell basics
+
+* [An introduction to PhysiCell](physicell-basics)
+* [Running PhysiCell official examples](physicell-basics/physicell-examples)
+* [Exploring the examples by changing the input parameters](physicell-basics/changing-input-parameters)
+* [Writing and using custom model functions](physicell-basics/custom-functions)
+* [Creating your first model](physicell-basics/first-model)
+
+## :mag: Data analysis and visualization tools
+* [PhysiCell's standard analysis and visualization tools](data-analysis-and-visualization)
+* [Python-based data visualization with PhysiPy](data-analysis/physipy)
+
+## :rocket: Running larger studies
+
+* [Running local batch studies with replicates]
+* [Running local parameter studies]

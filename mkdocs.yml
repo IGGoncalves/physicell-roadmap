@@ -1,2 +1,41 @@
-site_name: My Docs
-site_url: https://example.com/
+site_name: PhysiCell Roadmap
+site_url: https://iggoncalves.github.io/physicell-roadmap/
+theme:
+  name: material
+  icon:
+    logo: material/book-search
+    repo: fontawesome/brands/github
+  palette:
+    scheme: standard
+    primary: teal
+    accent: teal
+  features:
+    - navigation.sections
+
+markdown_extensions:
+  - admonition
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+
+repo_url: https://github.com/MathCancer/PhysiCell
+repo_name: MathCancer/PhysiCell
+
+nav:
+  - Getting started: 'index.md'
+  - PhysiCell basics:
+    - 'An introduction to PhysiCell': 'basics/introduction.md'
+    - 'Running examples': 'basics/running-examples.md'
+    - 'Changing input parameters': 'basics/changing-input.md'
+    - 'Custom functions': 'basics/custom-functions.md'
+    - 'Your first model': 'basics/first-model.md'
+  - Data analysis and visualization:
+    - 'Standard tools': 'data/standard-tools.md'
+    - 'PhysiPy': 'data/physipy.md'
+  - Scaling up:
+    - 'Batch simulations': 'scaling/batch.md'
+    - 'Parameter studies': 'scaling/parameter-studies.md'
+  - Other resources:
+    - 'Programming review': 'programming-review.md'
