@@ -1,8 +1,10 @@
+!!! tip
+    **Consider the following sections as suggestions.** You can follow them to get the basic ideas, but you may  also adapt them to your own workflow. Feel free to experiment with the code to optimize your routines!
+
+
 By now, you should be able to run some simulations on your local machine. However, once you feel comfortable with your model and with the PhysiCell workflow, you may feel the need to automate some parts of the process, so that you can **worry less about running the simulations and start focusing more on understanding the results**.
 
 For instance, you will probably need to **run multiple replicates** in order to test the model and guarantee that the **results are consistent**. Of course, this can be done **manually**, by running the simulation, saving the output results to another folder, and repeating this process as many times as necessary to get the number of replicates you need. However, it is much more efficient to **automate this process**.
-
-> **Consider the following sections as suggestions.** You can follow this structure to get the basic ideas, but you may adapt them to your own workflow. i.g., here we will start with compiled code, but you may want to start your batching process by compiling your code, and that is also a valid option. Feel free to experiment with the code to optimize your routines!
 
 ## Basic project structure
 Before running the simulations, you should prepare the structure of your project:

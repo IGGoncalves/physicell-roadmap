@@ -7,7 +7,7 @@ However, these resources can be a bit overwhelming, and it may be difficult to u
 Here is a list of the topics we will focus on. Preferably, you should go through them in **sequential order**, but it is not essential. If you have a specific question, just go through the page that covers the topic you need to clarify. You can also find these links listed on the left side of the wiki.
 
 !!! info
-    Before starting, check out the brief [programming review](programming-review.md) to brush up on some concepts that will be useful when running simulations.
+    Before starting, check out this brief [programming review](programming-review.md) to brush up on some concepts that will be useful when running simulations.
 
 ## :tada: PhysiCell basics
 
@@ -23,5 +23,5 @@ Here is a list of the topics we will focus on. Preferably, you should go through
 
 ## :rocket: Running larger studies
 
-* [Running local batch studies with replicates]
-* [Running local parameter studies]
+* [Running local batch studies with replicates](scaling/batch.md)
+* [Running local parameter studies](scaling/parameter-studies.md)
