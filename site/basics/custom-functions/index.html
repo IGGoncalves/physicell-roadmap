@@ -312,6 +312,47 @@
     The custom.cpp file
   </a>
   
+    <nav class="md-nav" aria-label="The custom.cpp file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-cell-types" class="md-nav__link">
+    Create cell types
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#microenvironment" class="md-nav__link">
+    Microenvironment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tissue-setup" class="md-nav__link">
+    Tissue setup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-custom-functions" class="md-nav__link">
+    Other custom functions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standard-custom-function" class="md-nav__link">
+    Standard custom function
+  </a>
+  
 </li>
       
     </ul>
@@ -524,6 +565,47 @@
     The custom.cpp file
   </a>
   
+    <nav class="md-nav" aria-label="The custom.cpp file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-cell-types" class="md-nav__link">
+    Create cell types
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#microenvironment" class="md-nav__link">
+    Microenvironment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tissue-setup" class="md-nav__link">
+    Tissue setup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-custom-functions" class="md-nav__link">
+    Other custom functions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standard-custom-function" class="md-nav__link">
+    Standard custom function
+  </a>
+  
 </li>
       
     </ul>
@@ -546,7 +628,57 @@
                   <h1>Custom functions</h1>
                 
                 <p>When you need your model to go further than changing the numerical values of your input parameters, <strong>it's time to make some changes to the custom functions that define how the model behaves</strong>. This is done in the <code>custom.cpp</code> and <code>custom.h</code> files.</p>
+<p>I believe the best way to understand how to design a model using custom functions is to use the sample projects as examples. Most of them rely on custom functions that are part of the PhysiCell code, found in the <code>PhysiCell_standard_models.cpp</code> inside the <code>core</code> folder. Make sure to check <strong>chapters 17 and 19</strong> of the User Guide, as well as the <strong>original publication</strong>, which goes through each sample project in more detail. <strong>Chapter 21</strong> is also important to understand the functions that define the cell cycle.</p>
+<p>Thus, in this section I will mainly focus on the main aspects of building a custom model.</p>
 <h2 id="the-customcpp-file">The <code>custom.cpp</code> file</h2>
+<p>Let's analyze the <code>custom.cpp</code> file that defines the <code>template</code> sample project. This is the most basic of all the sample projects, so it has the simplest structure. Other projects will build up on this code.</p>
+<h3 id="create-cell-types">Create cell types</h3>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">create_cell_types</span><span class="p">(</span> <span class="kt">void</span> <span class="p">);</span>
+</code></pre></div>
+<p>This function creates <strong>cell definitions</strong> and can be divided in two main parts. Firstly, it defines the <strong>functions common to all cell types</strong>, and then it defines <strong>functions specific to each cell type</strong>. It also uses the information found in the XML file to define each cell type.</p>
+<h3 id="microenvironment">Microenvironment</h3>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">setup_microenvironment</span><span class="p">(</span> <span class="kt">void</span> <span class="p">);</span>
+</code></pre></div>
+<p>The next function in the file will <strong>initialize the microenvirnoment, using the information found in the XML file.</strong></p>
+<p>In case you want a substance to have a <strong>non-uniform initial distribution</strong>, you can extend this function to go through the domain and change the value of that substance to a new value. For instance, if we wanted to define an <strong>initial concentration of glucose ranging from 0 to 1</strong> we could write the following function instead.</p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">setup_microenvironment</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// set domain parameters </span>
+
+    <span class="c1">// put any custom code to set non-homogeneous initial conditions or </span>
+    <span class="c1">// extra Dirichlet nodes here. </span>
+    <span class="c1">// Glucose initial condition</span>
+    <span class="c1">// set a new initial condition for glucose</span>
+    <span class="kt">int</span> <span class="n">glucose_index</span> <span class="o">=</span> <span class="n">microenvironment</span><span class="p">.</span><span class="n">find_density_index</span><span class="p">(</span> <span class="s">&quot;glucose&quot;</span> <span class="p">);</span> <span class="c1">// find its index</span>
+    <span class="c1">// go through all the voxels in the domain</span>
+    <span class="k">for</span><span class="p">(</span> <span class="kt">int</span> <span class="n">voxel_index</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">voxel_index</span> <span class="o">&lt;</span> <span class="n">microenvironment</span><span class="p">.</span><span class="n">number_of_voxels</span><span class="p">();</span> <span class="n">voxel_index</span><span class="o">++</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">microenvironment</span><span class="p">(</span><span class="n">voxel_index</span><span class="p">)[</span><span class="n">glucose_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">UniformRandom</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="c1">// initialize BioFVM </span>
+
+    <span class="n">initialize_microenvironment</span><span class="p">();</span>  
+
+    <span class="k">return</span><span class="p">;</span> 
+<span class="p">}</span>
+</code></pre></div>
+<p>Note that <code>UniformRandom()</code> is a function defined by PhysiCell that returns a random value between 0 and 1. You can find its defintion in <code>PhysiCell_utilities.cpp</code>, alongside other functions to simulate random events.</p>
+<h3 id="tissue-setup">Tissue setup</h3>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">setup_tissue</span><span class="p">(</span> <span class="kt">void</span> <span class="p">);</span>
+</code></pre></div>
+<p>Here you define the <strong>cells' initial coordinates</strong>, and you create the cell objects, placing them in the defined location. You can check the <code>PhysiCell_geometry.cpp</code> file, found inside the <code>modules</code> folder, for some functions that place cells in a given geometry (i.g., a circle, a rectangle,...).</p>
+<p>Alternatively, it can load the coordinates found in the <code>cells.csv</code> file.</p>
+<h3 id="other-custom-functions">Other custom functions</h3>
+<p>Finally, there are three custom functions:</p>
+<ul>
+<li><code>phenotype_function</code> defines changes in the cell phenotype. For instance, you could define a function that would increase apoptosis rates when oxygen levels are low. Check <strong>section 19.1.4</strong> of the User Guide for an example.</li>
+<li><code>contact_function</code>  defines a contact force between two neighbor cells. For instance, you could define an elastic or viscoelastic force.</li>
+<li><code>custom_function</code> defines changes in the cell behavior, and it is not specific to a cell function.</li>
+</ul>
+<p>By default, these cells are left as blank.</p>
+<h2 id="standard-custom-function">Standard custom function</h2>
+<p>For some examples of custom functions that are already part of the PhysiCell code, check <strong>chapter 19 of the User Guide</strong> as well as the <code>PhysiCell_standard_models.cpp</code> file found in the <code>core</code> folder.</p>
                 
               
               
