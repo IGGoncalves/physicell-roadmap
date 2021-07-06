@@ -11,15 +11,15 @@ Here is a list of the topics we will focus on. Preferably, you should go through
 
 ## :tada: PhysiCell basics
 
-* [An introduction to PhysiCell](physicell-basics)
-* [Running PhysiCell official examples](physicell-basics/physicell-examples)
-* [Exploring the examples by changing the input parameters](physicell-basics/changing-input-parameters)
-* [Writing and using custom model functions](physicell-basics/custom-functions)
-* [Creating your first model](physicell-basics/first-model)
+* [An introduction to PhysiCell](basics/introduction.md)
+* [Running PhysiCell official examples](basics/running-examples.md))
+* [Exploring the examples by changing the input parameters](basics/changing-input.md)
+* [Writing and using custom model functions](basics/custom-functions.md))
+* [Creating your first model](basics/first-model.md)
 
 ## :mag: Data analysis and visualization tools
-* [PhysiCell's standard analysis and visualization tools](data-analysis-and-visualization)
-* [Python-based data visualization with PhysiPy](data-analysis/physipy)
+* [PhysiCell's standard analysis and visualization tools](data/standard-tools.md))
+* [Python-based data visualization with PhysiPy](data/physipy.md))
 
 ## :rocket: Running larger studies
 
