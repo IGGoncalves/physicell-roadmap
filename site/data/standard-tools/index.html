@@ -406,6 +406,34 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#no-module-named-scipy" class="md-nav__link">
+    "No module named scipy"
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#render-specific-frames" class="md-nav__link">
+    Render specific frames
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#animations" class="md-nav__link">
+    Animations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spheres-not-rendering-center-points-only" class="md-nav__link">
+    Spheres not rendering (center points only)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#povwriter" class="md-nav__link">
     POVWriter
   </a>
@@ -609,6 +637,34 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#no-module-named-scipy" class="md-nav__link">
+    "No module named scipy"
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#render-specific-frames" class="md-nav__link">
+    Render specific frames
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#animations" class="md-nav__link">
+    Animations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spheres-not-rendering-center-points-only" class="md-nav__link">
+    Spheres not rendering (center points only)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#povwriter" class="md-nav__link">
     POVWriter
   </a>
@@ -649,9 +705,40 @@
 <p>Just like the <strong>python-loader</strong> module, there are also scripts built by the PhysiCell developers that allow you to <strong>load data into MATLAB</strong>. These can be found <a href="http://www.mathcancer.org/blog/working-with-physicell-snapshots-in-matlab/">here</a>, alongside a tutorial that demonstrates how the data can be processed and visualized once it has been loaded.</p>
 <h2 id="data-visualization">Data Visualization</h2>
 <h3 id="paraview">ParaView</h3>
-<p><img alt="paraview" src="uploads/948f03618f3696018114e9f0e35ab9d5/paraview.png" /></p>
-<p>ParaView is a great tool to use when you want to look into your cell data to understand what it looks like. Using PhysiCell's <a href="http://www.mathcancer.org/blog/paraview-for-physicell-part-1/">ParaView routines</a>, you will be able to load the data from an output file and automatically render it to a 3D object that can be interacted with. Nevertheless, this tutorial has some mistakes! </p>
-<p>Here are some of the issues I have found:</p>
+<p><img alt="paraview" src="../../src/paraview.png" /></p>
+<p>ParaView is a great tool to use when you want to look into your cell data to understand what it looks like. Using PhysiCell's <a href="http://www.mathcancer.org/blog/paraview-for-physicell-part-1/">ParaView routines</a>, you will be able to load the data from an output file and automatically render it to a 3D object that can be interacted with. </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>I had some troubles following this tutorial. In case you run into similar issues, here are some suggestions on how to deal with them:</p>
+<h3 id="no-module-named-scipy">"No module named scipy"</h3>
+<p>The following line of code should be added to the Python script (after importing os but before importing scipy). Modify the path according to the location of your Python distribution in your computer.</p>
+<div class="highlight"><pre><span></span><code><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;c:\python27\Lib\site-packages&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>You can also <strong>run this line in ParaView's Python Shell</strong> (available under the <code>Tools</code> tab), which will set the location of your Python distribution until you close ParaView again. This is helpful if you are going to load multiple states and do not want to copy this line of code into every Python file.</p>
+<h3 id="render-specific-frames">Render specific frames</h3>
+<p>The Python file provided by PhysiCell to load a specific timepoint specifies timepoint 3696. You have to change this to a timepoint that you actually have in your output folder. The rendered frame is given by the last line of the script</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">iframe</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">3696</span><span class="p">]:</span>    <span class="c1"># or, &quot;in range(start, end+1, step):&quot;  render_cells(iframe)</span>
+</code></pre></div>
+<h3 id="animations">Animations</h3>
+<p>The Python file provided by PhysiCell to create animations is not optimzied for Windows. Make sure to change this line:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/Downloads/&#39;</span>
+</code></pre></div>
+<p>to check the OS instead</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="s1">&#39;win32&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="p">:</span>   <span class="c1"># running on Windows    </span>
+    <span class="nb">dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;USERPROFILE&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/Downloads/&#39;</span>
+<span class="k">else</span><span class="p">:</span>   <span class="c1"># Linux or darwin/OSX    </span>
+    <span class="nb">dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/Downloads/&#39;</span>
+</code></pre></div>
+<h3 id="spheres-not-rendering-center-points-only">Spheres not rendering (center points only)</h3>
+<ul>
+<li>
+<p><strong>Glyphs</strong> - Guarantee that cell_diameter is selected as an active attribute and that the Glyph Type (in Glyph Source) is selected as Sphere;</p>
+</li>
+<li>
+<p><strong>OSPRay</strong> - For each clip, guarantee that the representation (Display) is selected as 3D Glyphs. Then, in Glyph Parameters, define the Glyph Type as sphere, the scalre array as cell_diameter and the radius as 1 (may be incorrect, but as of now it is the only way for it to work)</p>
+</li>
+</ul>
+</div>
 <h3 id="povwriter">POVWriter</h3>
 <p><a href="https://www.youtube.com/watch?v=nJ2urSm4ilU"><img alt="povray" src="https://img.youtube.com/vi/nJ2urSm4ilU/0.jpg" /></a></p>
 <p>POVWriter is not as flexible as ParaView, as it renders data into a static image and not an interactable object. However, it offers high-quality renderings of your results. Plus, it can be programmed to adapt to your own style and you can use some simple additional tools to create animations. Check <a href="http://www.mathcancer.org/blog/povwriter/">PhysiCell's tutorial</a> for more information on how to use this tool.</p>
