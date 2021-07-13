@@ -18,11 +18,50 @@ Just like the **python-loader** module, there are also scripts built by the Phys
 
 ### ParaView
 
-![paraview](uploads/948f03618f3696018114e9f0e35ab9d5/paraview.png)
+![paraview](../src/paraview.png)
 
-ParaView is a great tool to use when you want to look into your cell data to understand what it looks like. Using PhysiCell's [ParaView routines](http://www.mathcancer.org/blog/paraview-for-physicell-part-1/), you will be able to load the data from an output file and automatically render it to a 3D object that can be interacted with. Nevertheless, this tutorial has some mistakes! 
+ParaView is a great tool to use when you want to look into your cell data to understand what it looks like. Using PhysiCell's [ParaView routines](http://www.mathcancer.org/blog/paraview-for-physicell-part-1/), you will be able to load the data from an output file and automatically render it to a 3D object that can be interacted with. 
 
-Here are some of the issues I have found:
+!!! warning
+    I had some troubles following this tutorial. In case you run into similar issues, here are some suggestions on how to deal with them:
+     
+    ### "No module named scipy"
+    The following line of code should be added to the Python script (after importing os but before importing scipy). Modify the path according to the location of your Python distribution in your computer.
+  
+    ```python
+    sys.path.insert(0,'c:\python27\Lib\site-packages')
+    ```
+
+    You can also **run this line in ParaView's Python Shell** (available under the `Tools` tab), which will set the location of your Python distribution until you close ParaView again. This is helpful if you are going to load multiple states and do not want to copy this line of code into every Python file.
+
+    ### Render specific frames
+    The Python file provided by PhysiCell to load a specific timepoint specifies timepoint 3696. You have to change this to a timepoint that you actually have in your output folder. The rendered frame is given by the last line of the script
+
+    ```python
+    for iframe in [3696]:    # or, "in range(start, end+1, step):"  render_cells(iframe)
+    ```
+
+    ### Animations
+    The Python file provided by PhysiCell to create animations is not optimzied for Windows. Make sure to change this line:
+
+    ```python
+    dir = os.environ['HOME'] + '/Downloads/'
+    ```
+
+    to check the OS instead
+
+    ```python
+    if 'win32' in sys.platform:   # running on Windows    
+	    dir = os.environ['USERPROFILE'] + '/Downloads/'
+    else:   # Linux or darwin/OSX    
+	    dir = os.environ['HOME'] + '/Downloads/'
+    ```
+
+    ### Spheres not rendering (center points only)
+
+    - **Glyphs** - Guarantee that cell_diameter is selected as an active attribute and that the Glyph Type (in Glyph Source) is selected as Sphere;
+
+    - **OSPRay** - For each clip, guarantee that the representation (Display) is selected as 3D Glyphs. Then, in Glyph Parameters, define the Glyph Type as sphere, the scalre array as cell_diameter and the radius as 1 (may be incorrect, but as of now it is the only way for it to work)
 
 
 ### POVWriter
