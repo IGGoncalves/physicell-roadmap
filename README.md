@@ -9,6 +9,10 @@ Check out PhysiCell @ http://physicell.org/ and don't forget to check their orig
 
 > Reference: A Ghaffarizadeh, R Heiland, SH Friedman, SM Mumenthaler, and P Macklin, PhysiCell: an Open Source Physics-Based Cell Simulator for Multicellular Systems, PLoS Comput. Biol. 14(2): e1005991, 2018. DOI: 10.1371/journal.pcbi.1005991
 
+### Planned tutorials
+- [ ] Rendering a bounding box in POVRay
+- [ ] Parameter studies (advanced)
+
 ---
 
 Built with [Material for MKDocs](https://squidfunk.github.io/mkdocs-material/).

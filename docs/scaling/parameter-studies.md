@@ -21,7 +21,7 @@ attribute_to_modify = substance_node + "/initial_condition"
 
 # Read and update file
 tree = et.parse(folder_name + file_name)
-tree.find(modified_element).text = str(sys.argv[1])
+tree.find(attribute_to_modify).text = str(sys.argv[1])
 tree.write(folder_name + file_name)
 ```
 

@@ -579,7 +579,7 @@
 
 <span class="c1"># Read and update file</span>
 <span class="n">tree</span> <span class="o">=</span> <span class="n">et</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">folder_name</span> <span class="o">+</span> <span class="n">file_name</span><span class="p">)</span>
-<span class="n">tree</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">modified_element</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">attribute_to_modify</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">tree</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">folder_name</span> <span class="o">+</span> <span class="n">file_name</span><span class="p">)</span>
 </code></pre></div>
 <p>Of course, you can modify our Python file to adapt to any of the possible parameters.</p>
