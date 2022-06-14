@@ -12,6 +12,7 @@ Here is a list of the topics we will focus on. Preferably, you should go through
 ## :tada: PhysiCell basics
 
 * [An introduction to PhysiCell](basics/introduction.md)
+* [Installing PhysiCell and its requirements](basics/installation.md)
 * [Running PhysiCell official examples](basics/running-examples.md)
 * [Exploring the examples by changing the input parameters](basics/changing-input.md)
 * [Writing and using custom model functions](basics/custom-functions.md)
