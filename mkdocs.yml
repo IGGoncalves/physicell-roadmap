@@ -27,6 +27,7 @@ nav:
   - Getting started: 'index.md'
   - PhysiCell basics:
     - 'An introduction to PhysiCell': 'basics/introduction.md'
+    - 'Setting up PhysiCell': 'basics/installation.md'
     - 'Running examples': 'basics/running-examples.md'
     - 'Changing input parameters': 'basics/changing-input.md'
     - 'Custom functions': 'basics/custom-functions.md'
